@@ -45,12 +45,27 @@ assert(stack_empty(stk)==1);
 }
 
 
+//Design a queue using two stacks as instance variables, such that all queue operations execute in amortized O(1) time.
 
+void test_queue(){
+Queue *q = (Queue*)malloc(sizeof(Queue));
+q->stk1 = NULL;
+q->stk2 = NULL;
+enqueue(q, 1);
+enqueue(q, 2);
+enqueue(q, 3);
+
+assert(deQueue(q)==1);
+assert(deQueue(q)==2);
+assert(deQueue(q)==3);
+
+
+}
 int main()
 {
     //test_empty_stack();
     //test_full_stack();
     //test_stack();
-    //test_postfix();
+    test_queue();
     return 0;
 }

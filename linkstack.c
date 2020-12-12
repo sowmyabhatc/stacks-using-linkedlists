@@ -70,6 +70,40 @@ return stk;
 
 
 
+//Design a queue using two stacks as instance variables, such that all queue operations execute in amortized O(1) time.
+
+
+
+
+void enqueue(Queue *q,float ele){
+StackResult res;
+stack_push(&q->stk1,ele,&res);
+
+}
+
+
+int deQueue(Queue* q)
+{
+    int x;
+    StackResult res;
+    /* If both stacks are empty then error */
+    if (q->stk1 == NULL && q->stk2 == NULL) {
+        //printf("Q is empty");
+        return 0;
+    }
+
+    /* Move elements from stack1 to stack 2 only if
+       stack2 is empty */
+    if (q->stk2 == NULL) {
+        while (q->stk1 != NULL) {
+            x = stack_pop(&q->stk1,&res);
+            stack_push(&q->stk2, x,&res);
+        }
+    }
+
+    x = stack_pop(&q->stk2,&res);
+    return x;
+}
 
 
 
